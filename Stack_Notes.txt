@@ -1,0 +1,23 @@
+Stack Data Structure
+--------------------
+-Last In First Out
+
+Operations can be done 
+-Boolean Push(Overflow Condition)
+-int Pop(Underflow Condition)
+-Peek Or Top(Returns the top most element in the stack)
+-isEmpty(Returns true if stack is empty else false)
+
+Takes O(1) Time for all above operations
+
+Implementations of Stack using Array And Linked List
+
+Iterable->Collection->List--->Vector->Stack
+
+-pop():-Retrieve and remove the top most element in the stack
+        Throws "EmptyStackException" if the stack is empty
+		
+		
+-search()-Takes the input as element to be searched and returns the position of the same(**Count starrs from '1')
+          else it returns (-1)
+		 

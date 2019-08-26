@@ -1,0 +1,8 @@
+Array Programs
+--------------
+Array Rotation- 1) Naive Approach-Rotate Array with temporary array of "d" size
+				2) Rotate Array with One by One element
+				3) Rotate Array with Juggling method(gcd approach)
+				4) Reversal Alogorithm --Reverse A to get ArB, where Ar is reverse of A.
+										 Reverse B to get ArBr, where Br is reverse of B.
+										 Reverse all to get (ArBr) r = BA.

@@ -1,0 +1,40 @@
+-array-ordered
+-super class(Object)
+-implements interface Cloneable and Serializable
+-In case of primitive data types-Stored in contiguous memory locations
+-In case of object-Stored in Heap Segment
+--------------------------------------------
+How Java Objects are stored in memory
+
+-Dynamically allocated in Heap only when must use new()
+-C++ either in stack or heap(new()-Heap else on Stack if not global/Static)
+--------------------------------------------
+Default Array Values
+--
+boolean : false
+int : 0
+double : 0.0
+String : null
+User Defined Type : null
+
+Concept of Jagged Array
+
+
+		int intArray[] = new int[3]; 
+        byte byteArray[] = new byte[3]; 
+        short shortsArray[] = new short[3]; 
+          
+        // array of Strings 
+        String[] strArray = new String[3]; 
+          
+        System.out.println(intArray.getClass()); --class[I--run-time type signature for the class object “array with component type int“.
+        System.out.println(intArray.getClass().getSuperclass()); 
+        System.out.println(byteArray.getClass()); --class[B
+        System.out.println(shortsArray.getClass()); --class[S
+        System.out.println(strArray.getClass()); --class [Ljava.lang.String;--[L” is the run-time type signature for the class object “array with component type of a Class”
+
+-public final field -length(either zero or positive value)
+-"clone" method from Object class not inherited
+-overridden clone method throws no checked exceptions
+-Deep Copy for Single Dimensional Array
+-Shallow Copy for Multidimensional Array(Shared Sub-Arrays)
