@@ -1,0 +1,97 @@
+ejb:/EJBDemo//TestStatelessBean!com.ejb.demo.RemoteTestBean
+com.ejb.demo.ITestBean.testmethod()
+	
+Server Logs
+------------
+01:07:20,269 INFO  [org.jboss.modules] (main) JBoss Modules version 1.6.1.Final
+01:07:20,567 INFO  [org.jboss.msc] (main) JBoss MSC version 1.2.7.SP1
+01:07:20,674 INFO  [org.jboss.as] (MSC service thread 1-8) WFLYSRV0049: WildFly Full 11.0.0.Final (WildFly Core 3.0.8.Final) starting
+01:07:21,688 INFO  [org.jboss.as.controller.management-deprecated] (Controller Boot Thread) WFLYCTL0028: Attribute 'security-realm' in the resource at address '/core-service=management/management-interface=http-interface' is deprecated, and may be removed in future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+01:07:21,708 INFO  [org.wildfly.security] (ServerService Thread Pool -- 17) ELY00001: WildFly Elytron version 1.1.6.Final
+01:07:21,708 INFO  [org.jboss.as.controller.management-deprecated] (ServerService Thread Pool -- 10) WFLYCTL0028: Attribute 'security-realm' in the resource at address '/subsystem=undertow/server=default-server/https-listener=https' is deprecated, and may be removed in future version. See the attribute description in the output of the read-resource-description operation to learn more about the deprecation.
+01:07:21,728 INFO  [org.jboss.as.server.deployment.scanner] (DeploymentScanner-threads - 1) WFLYDS0004: Found EJBDemo.jar in deployment directory. To trigger deployment create a file called EJBDemo.jar.dodeploy
+01:07:21,768 INFO  [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0039: Creating http management service using socket-binding (management-http)
+01:07:21,782 INFO  [org.xnio] (MSC service thread 1-4) XNIO version 3.5.4.Final
+01:07:21,789 INFO  [org.xnio.nio] (MSC service thread 1-4) XNIO NIO Implementation Version 3.5.4.Final
+01:07:21,816 INFO  [org.jboss.as.jaxrs] (ServerService Thread Pool -- 43) WFLYRS0016: RESTEasy version 3.0.24.Final
+01:07:21,823 WARN  [org.jboss.as.txn] (ServerService Thread Pool -- 58) WFLYTX0013: The node-identifier attribute on the /subsystem=transactions is set to the default value. This is a danger for environments running multiple servers. Please make sure the attribute value is unique.
+01:07:21,831 INFO  [org.jboss.as.clustering.infinispan] (ServerService Thread Pool -- 42) WFLYCLINF0001: Activating Infinispan subsystem.
+01:07:21,835 INFO  [org.jboss.as.naming] (ServerService Thread Pool -- 50) WFLYNAM0001: Activating Naming Subsystem
+01:07:21,838 INFO  [org.jboss.as.webservices] (ServerService Thread Pool -- 60) WFLYWS0002: Activating WebServices Extension
+01:07:21,839 INFO  [org.jboss.as.security] (ServerService Thread Pool -- 57) WFLYSEC0002: Activating Security Subsystem
+01:07:21,839 INFO  [org.jboss.as.jsf] (ServerService Thread Pool -- 48) WFLYJSF0007: Activated the following JSF Implementations: [main]
+01:07:21,849 INFO  [org.jboss.as.security] (MSC service thread 1-2) WFLYSEC0001: Current PicketBox version=5.0.2.Final
+01:07:21,858 INFO  [org.jboss.as.connector] (MSC service thread 1-8) WFLYJCA0009: Starting JCA Subsystem (WildFly/IronJacamar 1.4.6.Final)
+01:07:21,886 INFO  [org.jboss.as.connector.subsystems.datasources] (ServerService Thread Pool -- 36) WFLYJCA0004: Deploying JDBC-compliant driver class org.h2.Driver (version 1.4)
+01:07:21,893 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-5) WFLYJCA0018: Started Driver service with driver-name = h2
+01:07:21,921 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-6) WFLYUT0003: Undertow 1.4.18.Final starting
+01:07:21,960 INFO  [org.jboss.as.naming] (MSC service thread 1-5) WFLYNAM0003: Starting Naming Service
+01:07:21,969 INFO  [org.jboss.as.mail.extension] (MSC service thread 1-2) WFLYMAIL0001: Bound mail session [java:jboss/mail/Default]
+01:07:22,096 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 59) WFLYUT0014: Creating file handler for path 'D:\essential_softwares\wildfly-11.0.0.Final/welcome-content' with options [directory-listing: 'false', follow-symlink: 'false', case-sensitive: 'true', safe-symlink-paths: '[]']
+01:07:22,261 INFO  [org.wildfly.extension.io] (ServerService Thread Pool -- 41) WFLYIO001: Worker 'default' has auto-configured to 16 core threads with 128 task threads based on your 8 available processors
+01:07:22,264 INFO  [org.jboss.as.ejb3] (MSC service thread 1-8) WFLYEJB0482: Strict pool mdb-strict-max-pool is using a max instance size of 32 (per class), which is derived from the number of CPUs on this host.
+01:07:22,265 INFO  [org.jboss.as.ejb3] (MSC service thread 1-7) WFLYEJB0481: Strict pool slsb-strict-max-pool is using a max instance size of 128 (per class), which is derived from thread worker pool sizing.
+01:07:22,308 INFO  [org.jboss.remoting] (MSC service thread 1-4) JBoss Remoting version 5.0.5.Final
+01:07:22,322 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-3) WFLYUT0012: Started server default-server.
+01:07:22,325 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-5) WFLYUT0018: Host default-host starting
+01:07:22,417 INFO  [org.jboss.as.patching] (MSC service thread 1-8) WFLYPAT0050: WildFly Full cumulative patch ID is: base, one-off patches include: none
+01:07:22,426 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-3) WFLYUT0006: Undertow HTTP listener default listening on 127.0.0.1:8080
+01:07:22,446 WARN  [org.jboss.as.domain.management.security] (MSC service thread 1-6) WFLYDM0111: Keystore D:\essential_softwares\wildfly-11.0.0.Final\standalone\configuration\application.keystore not found, it will be auto generated on first use with a self signed certificate for host localhost
+01:07:22,455 INFO  [org.jboss.as.server.deployment.scanner] (MSC service thread 1-2) WFLYDS0013: Started FileSystemDeploymentService for directory D:\essential_softwares\wildfly-11.0.0.Final\standalone\deployments
+01:07:22,468 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-4) WFLYSRV0027: Starting deployment of "EJBDemo.jar" (runtime-name: "EJBDemo.jar")
+01:07:22,547 INFO  [org.jboss.as.ejb3] (MSC service thread 1-3) WFLYEJB0493: EJB subsystem suspension complete
+01:07:22,764 INFO  [org.jboss.as.connector.subsystems.datasources] (MSC service thread 1-5) WFLYJCA0001: Bound data source [java:jboss/datasources/ExampleDS]
+01:07:22,957 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-6) WFLYUT0006: Undertow HTTPS listener https listening on 127.0.0.1:8443
+01:07:23,015 INFO  [org.jboss.ws.common.management] (MSC service thread 1-2) JBWS022052: Starting JBossWS 5.1.9.Final (Apache CXF 3.1.12) 
+01:07:23,188 INFO  [org.jboss.weld.deployer] (MSC service thread 1-7) WFLYWELD0003: Processing weld deployment EJBDemo.jar
+01:07:23,225 INFO  [org.hibernate.validator.internal.util.Version] (MSC service thread 1-7) HV000001: Hibernate Validator 5.3.5.Final
+01:07:23,285 INFO  [org.jboss.as.ejb3.deployment] (MSC service thread 1-7) WFLYEJB0473: JNDI bindings for session bean named 'TestStatelessBean' in deployment unit 'deployment "EJBDemo.jar"' are as follows:
+
+	java:global/EJBDemo/TestStatelessBean!com.ejb.demo.RemoteTestBean
+	java:app/EJBDemo/TestStatelessBean!com.ejb.demo.RemoteTestBean
+	java:module/TestStatelessBean!com.ejb.demo.RemoteTestBean
+	java:jboss/exported/EJBDemo/TestStatelessBean!com.ejb.demo.RemoteTestBean
+	java:global/EJBDemo/TestStatelessBean!com.ejb.demo.LocalTestBean
+	java:app/EJBDemo/TestStatelessBean!com.ejb.demo.LocalTestBean
+	java:module/TestStatelessBean!com.ejb.demo.LocalTestBean
+	java:global/EJBDemo/TestStatelessBean!com.ejb.demo.TestStatelessBean
+	java:app/EJBDemo/TestStatelessBean!com.ejb.demo.TestStatelessBean
+	java:module/TestStatelessBean!com.ejb.demo.TestStatelessBean
+
+01:07:23,423 INFO  [org.jboss.weld.Version] (MSC service thread 1-1) WELD-000900: 2.4.3 (Final)
+01:07:23,443 INFO  [org.infinispan.factories.GlobalComponentRegistry] (MSC service thread 1-2) ISPN000128: Infinispan version: Infinispan 'Chakra' 8.2.8.Final
+01:07:23,691 INFO  [org.jboss.as.clustering.infinispan] (ServerService Thread Pool -- 62) WFLYCLINF0002: Started client-mappings cache from ejb container
+01:07:23,969 INFO  [org.jboss.as.server] (ServerService Thread Pool -- 37) WFLYSRV0010: Deployed "EJBDemo.jar" (runtime-name : "EJBDemo.jar")
+01:07:24,010 INFO  [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0212: Resuming server
+01:07:24,012 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0060: Http management interface listening on http://127.0.0.1:9990/management
+01:07:24,012 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0051: Admin console listening on http://127.0.0.1:9990
+01:07:24,013 INFO  [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: WildFly Full 11.0.0.Final (WildFly Core 3.0.8.Final) started in 4102ms - Started 415 of 639 services (350 services are lazy, passive or on-demand)
+
+
+Client App Logs
+---------------
+Client App Started
+Dec 06, 2019 1:08:25 AM org.wildfly.naming.client.Version <clinit>
+INFO: WildFly Naming version 1.0.7.Final
+Dec 06, 2019 1:08:25 AM org.wildfly.security.Version <clinit>
+INFO: ELY00001: WildFly Elytron version 1.1.6.Final
+ejb:/EJBDemo//TestStatelessBean!com.ejb.demo.LocalTestBean
+Dec 06, 2019 1:08:25 AM org.xnio.Xnio <clinit>
+INFO: XNIO version 3.5.4.Final
+Dec 06, 2019 1:08:25 AM org.xnio.nio.NioXnio <clinit>
+INFO: XNIO NIO Implementation Version 3.5.4.Final
+Dec 06, 2019 1:08:26 AM org.jboss.remoting3.EndpointImpl <clinit>
+INFO: JBoss Remoting version 5.0.5.Final
+Dec 06, 2019 1:08:26 AM org.jboss.ejb.client.EJBClient <clinit>
+INFO: JBoss EJB Client version 4.0.7.Final
+javax.ejb.EJBException: java.io.IOException: WFHTTP000005: Invalid response code 405 (full response ClientResponse{responseHeaders={Connection=[keep-alive], Content-Length=[83], Content-Type=[text/html], Date=[Thu, 05 Dec 2019 19:38:26 GMT]}, responseCode=405, status='Method Not Allowed', protocol=HTTP/1.1})
+	at org.jboss.ejb.client.EJBInvocationHandler.invoke(EJBInvocationHandler.java:195)
+	at org.jboss.ejb.client.EJBInvocationHandler.invoke(EJBInvocationHandler.java:100)
+	at com.sun.proxy.$Proxy2.testmethod(Unknown Source)
+	at Main.main(Main.java:26)
+Caused by: java.io.IOException: WFHTTP000005: Invalid response code 405 (full response ClientResponse{responseHeaders={Connection=[keep-alive], Content-Length=[83], Content-Type=[text/html], Date=[Thu, 05 Dec 2019 19:38:26 GMT]}, responseCode=405, status='Method Not Allowed', protocol=HTTP/1.1})
+	at org.wildfly.httpclient.common.HttpTargetContext$1$1.lambda$completed$3(HttpTargetContext.java:206)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
