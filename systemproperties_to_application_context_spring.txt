@@ -1,0 +1,12 @@
+<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@//localhost:1521/orcl" />
+		<property name="username" value="#{systemProperties['username']}" />
+		<property name="password" value="#{systemProperties['userpassword']}" />
+</bean>
+
+--------------------------------------------------------------------------------------
+
+passing system properties through java command line:-
+java -cp springdatasource-0.0.1-SNAPSHOT-jar-with-dependencies.jar;D:\Softwares\jar_files\ojdbc6-11.2.0.4.jar -DtestVar=PKS -Dusername=dbaHome -Duserpassword=dbaHome6767 com.javarticles.spring.hibernate.SpringHibernateExample
