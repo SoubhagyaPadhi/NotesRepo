@@ -1,0 +1,21 @@
+30/9/20 12:50:27 PM IST: [INFO] Running 'npm run-script build-dev' in D:\Workspaces\spring_workspace\SpringAngular\SpringAngular-UI
+30/9/20 12:50:31 PM IST: [ERROR] npm ERR! missing script: build-dev
+30/9/20 12:50:31 PM IST: [ERROR] npm ERR! 
+30/9/20 12:50:31 PM IST: [ERROR] npm ERR! Did you mean this?
+30/9/20 12:50:31 PM IST: [ERROR] npm ERR!     build
+30/9/20 12:50:31 PM IST: [ERROR] 
+30/9/20 12:50:31 PM IST: [ERROR] npm ERR! A complete log of this run can be found in:
+30/9/20 12:50:31 PM IST: [ERROR] npm ERR!     C:\Users\User\AppData\Roaming\npm-cache\_logs\2020-09-30T07_20_31_465Z-debug.log
+
+
+Check for "build-dev" in package.json >under <scripts> definition:-
+
+ "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build --prod",
+    "build-dev": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
+  },
