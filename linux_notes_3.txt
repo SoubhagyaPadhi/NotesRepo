@@ -1,0 +1,107 @@
+-Process =
+
+-ps -aux
+     a=all users
+	 x=process not executed by running terminal
+	 u=list the user which process belongs to
+
+-ps -aux | grep <finding_name>
+
+-Daemons =Background Processes
+
+-Master Daemon =Systemd
+-two jobs - Service Manager
+          - Initialisation Process
+		  - Boot-> 
+			loads System Kernel ->
+			loads Systemd ->  
+			Mounting all the file Systems
+			Starting all the services
+			Forking - all the other process will start-up	
+
+-*pstree
+
+-process id for Systemd =1
+
+-systemctl =command line to control all the daemons
+
+-Systemd created daemons(known as Units)
+
+  -sudo systemctl start/stop/restart/reload/*reload-or-restart <daemon_name>
+  
+  -sudo systemctl status <daemon_name>
+  
+  -sudo systemctl disable/(enable) <daemon_name> -to stop coming up again
+  
+  -sudo systemctl is-active/is-enabled <daemon_name>
+  
+  *-sudo systemctl list-units =which daemons are active from Systemd
+  
+  -sudo systemctl list-units -t<type> service
+  
+-**sudo systemctl list-units --all | grep <name>
+no output =units which are parsed and part of memory
+
+-sudo systemctl list-unit-files | grep <name>
+
+**Start On Current Boot and from next boot onwards-
+-----------------------------------------------------
+
+-journalctl =log for systemctl
+
+-journalctl -xe
+
+-restart journal =sudo systemctl restart systemd-journald
+
+-------------------------------------------------------------------------
+
+-ps -u <username> | grep <process_name>
+
+-kill = to kill the process
+        
+-pgrep <process_name> =will return the process-id
+
+-kill <process_id>
+
+-top =show running process sorting with CPU usages
+-htop =cool look with top command
+
+--------------------------------------------------------------------------
+
+-Foreground /Background Processes
+
+-example of foreground = ping -c 100 <address>
+-sleep 30 =command line go to sleep
+
+-ping -c 1000 <address>
+
+ctrl + Z = Sleep and knock Out
+
+-jobs
+
+-to make and run the background job =bg <job_id>
+-to make and run the foreground job =fg <job_id>
+
+-straight making a process background =ping -c 100 <address> &
+
+-------------------------------------------
+
+kill signal -
+kill -l =list all signals
+
+-Default Signal <15> SIGTERM- ask a process if it can be killed
+
+-ctrl + c =<2> Signal Interrupt
+-ctrl + z =<19> SIGSTOP :: again ctrl + z = SIGCONT(Signal Continue)
+
+-kill -9 = SIGNAL KILL
+
+-kill process with name =pkill -9 <process/job_name>
+
+--------------------------------------------
+
+
+      
+
+  
+	

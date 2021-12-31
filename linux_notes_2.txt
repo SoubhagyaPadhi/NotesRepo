@@ -1,0 +1,65 @@
+Install Packages--
+
+-Package Managers
+-----------------
+=dpkg
+=apt
+
+---------------------------------
+dpkg =low  level package manager
+
+-download the package<.deb =file extension for debian based system>
+-dpkg -i<install> <pkg>
+  **issue with dependency install
+  *apt --fix-broken install
+  
+-dpkg -l
+
+---------------------------------
+apt =advanced package tool, high level package manager
+doesnot need <deb> file
+
+-sudo apt update =list of all applications to be updated from repository
+
+-sudo apt edit-sources =to find the resource url for the repository
+
+-sudo apt install <pkg_name>
+
+-sudo apt list
+
+-apt list --installed | grep ^<begin_with_name>
+
+-sudo apt show <pkg_name>
+
+-sudo apt search <pkg_name>
+
+-to remove pkg =sudo apt remove <pkg_name>
+-purge =sudo apt purge <pkg_name>
+
+-sudo apt upgrade
+
+-sudo apt full-upgrade =remove old version of things
+
+-------------------------------
+aptitude
+
+-sudo aptitude =interactive high level package manager
+
+-------------------------------
+snap/snapd
+
+-snap store
+
+-add the app to repository
+
+-apt install snapd
+
+exmp:-sudo snap install <pkg_name>
+
+-Python Package Manager = Pip
+-Ruby Package Manager = Ruby Gems
+
+-Python packages/dependencies = requirements.txt
+
+-to install all these dependencies
+ **pip3 install -r requirements.txt

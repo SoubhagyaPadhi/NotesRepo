@@ -1,0 +1,197 @@
+
+Terminal Emulator-> to interact with shell(user interface to interact with os)
+
+BASH-Bourne-Again Shell
+
+KERNEL =central component of OS which manage operations of computer and hardware
+-manage operations of memory and CPU time
+-bridge between applications and data processing performed at hardware
+
+SHELL =communication layer between user and kernel
+       command line interpreter
+	   
+Terminal Emulator->SHELL->Kernel/OS
+
+-----------------------------------
+ps =process status
+
+-----------------------------------
+man <cmd> =to get help on any command
+for help = <cmd> -h/--h
+
+------------------------------------
+apropos <keyword>
+
+-----------------------------------
+id
+hostname
+uname
+env
+who =all the users who loggedin
+
+-----------------------------------
+$ =user
+# =root
+
+-----------------------------------
+ls =list
+ls -l =file size ,modified date and time
+ls -ld =display the information of directory
+ls -a =list all files including hidden files
+ls -lh =show size in human readable format
+ls -r =list in reverse order
+ls -R =recursive listing sub-directories
+ls -ltr =show the latest modification file or directory date as last
+-------------------------------------
+
+making an alias = <alias ls="ls -l">
+list out all the alias =alias
+To remove an previously defined alias =<unalias ls>
+-------------------------------------
+
+Linux =File Based System
+Root Directory =/
+
+	bin  =Binaries(Command binaries)
+	sbin =super bin(special commands which only admin can use)
+	usr  =contains bin and sbin again
+	
+	local =to store user generated commands
+	boot =system boot related files
+	var =log files/web app related files
+	tmp =temporary files
+	
+	home =where all the user lives
+	
+	root =home for root user
+	
+	dev =devices directory
+	
+	     vda/vda1 =hard drives/virtual disks
+		 sda/sda1
+		 
+    etc =etsy files(settings/configuration files of system)
+	
+	mnt =manually mounting drives
+	media =system automatically mounting drives
+		  
+	
+	
+	
+-----------------------------------
+which <cmd> =find where command binaries live
+
+------------------------------------
+
+clear/ ctrl+l
+
+------------------------------------
+read file content = cat <file_name>...concatenate
+
+------------------------------------
+copy = cp <origin> <destination>
+      sudo cp <origin> <destination>
+------------------------------------
+
+remove = rm <file_name>
+
+------------------------------------
+
+Managing Users--
+--------------
+
+adduser <username>----
+
+-to check the user = cat /etc/passwd
+"x" means password stored in /etc/shadow file
+
+exmp: thor<username>:x:1001:1001:<home directory>:<default shell>
+
+UID->1001
+GID->1001
+
+useradd <username>----
+
+-lazy command
+-to provide home directory :- usermod <username> -m
+
+-change password :-sudo passwd <username>
+
+-to provide default bash :-usermod <username> --shell /bin/bash
+
+-to change user name :-usermod -l <new_username> <old_username>
+
+---------------------------------------------------------------
+sudo =super user do
+-------------------
+
+su =switching user
+
+su - <switch to root user>
+
+sudo su -
+
+su - <username>
+
+----------------------------------------------------------------
+
+<sudoers> file contains all the super users
+-sudo visudo =recommended to edit sudoers file
+
+-<username> ALL=(ALL:ALL) ALL
+
+1st ALL = systems access
+2nd ALL=all commands
+
+-----------------------------------------------------------------
+
+delete user =userdel
+
+-----------------------------------------------------------------
+
+add new group = sudo groupadd <group_name>
+-file for groups =cat /etc/group
+
+
+-----------------------------------------------------------------
+groups =current logged in user in which group
+
+-----------------------------------------------------------------
+
+add a user to the group = sudo usermod -aG <group_name> <username>
+
+-aG =appending in the groups which user is part of
+
+------------------------------------------------------------------
+
+remove user from the group = sudo gpasswd -d <username> <group_name>
+
+------------------------------------------------------------------
+
+delete the group = sudo groupdel <group_name>
+
+-------------------------------------------------------------------
+ctrl+d =exit/logout
+ctrl+a =go to first letter in command
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
