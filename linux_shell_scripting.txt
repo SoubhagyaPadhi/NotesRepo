@@ -1,0 +1,71 @@
+-vi editor commands
+--------------------
+
+vi <file_name>--commannd mode -> ~ means unused lines
+
+press 'i' -> insert mode
+add contents
+<esc> to enter to command mode again
+
+:wq(or Shift + zz) - to save and exit
+
+:q = quit
+:w = save bu keep the file open
+
+----------------------------------------
+
+Shell Scripting--
+
+<#!/bin/sh> --first line called "SheBang"--the absolute path to the Bash interpreter in Unix File System
+
+chmod 755 <script_file_name> = to make it executable
+
+variable
+--------
+$ MYVAR=hello
+$ echo $MYVAR
+
+escape character = \"world\" -> "world"
+
+for loop
+---------
+for i in 1 2 3 4 5
+do
+  echo "Looping ... number $i"
+done
+
+
+while loop
+----------
+#!/bin/sh
+INPUT_STRING=hello
+while [ "$INPUT_STRING" != "bye" ]
+do
+  echo "Please type something in (bye to quit)"
+  read INPUT_STRING
+  echo "You typed: $INPUT_STRING"
+done
+
+if---else
+-----------
+if  [ something ]; then
+ echo "Something"
+ elif [ something_else ]; then
+   echo "Something else"
+ else
+   echo "None of the above"
+fi
+
+Function
+----------
+add_a_user()
+{
+  USER=$1
+  PASSWORD=$2
+  shift; shift;
+  # Having shifted twice, the rest is now comments ...
+  COMMENTS=$@ //to get all the parameters
+}
+
+add_a_user bob letmein Bob Holness the presenter
+
