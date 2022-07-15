@@ -1,0 +1,352 @@
+
+
+
+---------------------------
+-map()
+
+-flatMap()
+
+-filter()
+
+-Asynchronous flatMap() with delayElements()
+
+-concatMap()
+
+-flatMapMany() for Mono to change it to Flux
+
+-transform() --> Function func interface
+
+-defaultIfEmpty() and switchIfEmpty() --- data source not emitting data all the time
+
+            --operator to provide default values
+			
+            --flow :- onSubscribe() -> request(unbound) -> onComplete()
+			
+			--return Flux.empty()
+			
+			--.defaultIfEmpty("Empty")
+			
+			
+-switchIfEmpty(<Mono> or, <Flux>)--accepts a publisher
+
+-Combine Reactive Streams
+  
+  -concat() and concatWith() -- concatenation of reactive streams happens in sequence
+                               - first one is subscribed first and completes ,then second one is subscribed and then completes
+							   
+							 -- concat() static method in Flux
+							 
+							 -- concatWith() instance method in Flux and Mono , returns Flux
+							 
+							 
+  -merge() and mergeWith() 
+  
+		-- combine two publishers into one, publishers are subsbcribed eagerly and merge happens in interleaved fashion but concat() subscribes to the publishers in a sequence
+		
+		--merge() static method in Flux
+		
+		--mergeWith() instance method in Mono/Flux
+		
+  -mergeSequential() -- Even though publishers subscribed eagerly,merge happens in a sequence
+  
+  -zip() and zipWith() --
+  
+    --to merge upto 2 to 8 publishers(Flux or Mono) into one
+	
+	--zipWith() -> instance method used to merge two publishers into one
+	
+	--publishers subscribed eagerly
+	
+	--waits for all the publishers involved in transformation to emit one element -- continues till one publisher sends an onComplete event
+	
+	--Returns Tuple of elements, takes a combinator as parameter
+	  
+	  
+	  //Example-
+	  
+	  1) returns a <Flux> -- abcFlux.zipWith(defFlux, (first, second) -> first + second);
+	  
+	  2) returns a <Mono> -- aMono.zipWith(bMono)
+                .map(t2 -> t2.getT1() + t2.getT2());
+				
+-----------------------------------------------------------
+
+-Spring WebFlux = Annotated Controller Approach Or, Functional Endpoint Approach(Route)
+
+-Streaming Endpoints -- continuously sends updates to the clients as the new data arrives
+  --Server Sent Events(SSE)--using Spring Webflux
+  
+  --MediaType.TEXT_EVENT_STREAM_VALUE
+  
+  
+  --@WebFluxTest(controllers = FluxMonoController.class)
+  
+  --@Autowired
+    WebTestClient webTestClient;
+	
+	 webTestClient
+                .get()
+                .uri("/flux")
+                .exchange()
+                .expectStatus()
+                .is2xxSuccessful()
+                .expectBodyList(Integer.class)
+                .hasSize(3);
+				
+  --var flux = webTestClient
+                .get()
+                .uri("/stream")
+                .exchange()
+                .expectStatus()
+                .is2xxSuccessful()
+                .returnResult(Integer.class)
+                .getResponseBody();
+
+        StepVerifier.create(flux)
+                .expectNext(0, 1, 2)
+                .thenCancel()
+                .verify();
+				
+				
+  --webTestClient
+                .get()
+                .uri("/mono")
+                .exchange()
+                .expectStatus()
+                .is2xxSuccessful()
+                .expectBody(String.class)
+                .consumeWith(stringEntityExchangeResult ->{
+                    var response = stringEntityExchangeResult.getResponseBody();
+                    assertEquals("hello-world", response);
+                });
+				
+  --Block call in Test class - block() / blockLast()
+  
+  --ReactiveMongoRepository ->> ReactiveCrudRepository
+  
+  --webTestClient
+                .get()
+                .uri(MOVIES_INFO_URL + "/{id}", id)
+                .exchange()
+                .expectStatus()
+                .is2xxSuccessful()
+                /*.expectBody(MovieInfo.class)
+                .consumeWith(movieInfoEntityExchangeResult -> {
+                    var movieInfo = movieInfoEntityExchangeResult.getResponseBody();
+                    assert movieInfo != null;
+                })*/
+                .expectBody()
+                .jsonPath("$.name").isEqualTo("Dark Knight Rises");
+				
+				
+  --*** whenever there is a operation which going to give reactive type, we have to use flatMap() operation
+  
+  
+  --Void is a final class in WebFlux returning Mono of <Void>
+  
+  --@NotBlank --Spring starter validation
+	@NotNull
+    private List<@NotBlank(message = "movieInfo.cast must be present") String> cast;
+	
+	
+--------------------------------------------------------------------------------------
+
+--Netty -> Non-blocking I/O Server
+
+--Two Threads in Action - [ctor-http-nio-1] and [ntLoopGroup-3-3]..http thread responsible for reading the request and sending the response but actual execution is done via Loop Thread, and server-client connection will still be opened util all the execution completed
+
+--Reactive Libraries responsible for releasing the server thread and handling the execution through a totally different thread
+
+--Channel means open connection between the client and server,request and response sent via this channel
+
+--ChannelHandlers
+
+--Netty uses EventLoop model to handle connections in a non-blocking fashion
+
+--EventLoop is powered by one single thread
+
+--No of eventloops to handle the request is equal to no of cores in machine
+
+--EventLoops are part of <EventLoopGroup>
+
+--Event Queue-->Loop
+
+--A channel created will be assigned to an EventLoop
+
+-EventLoop is responsible for handling different events occurs during lifetime of channel
+
+--Channel Lifecycle -> 1-ChannelUnregistered 2-ChannelRegistered 3-ChannelActive 4-ChannelInActive
+
+------------------------------------------------------------------------------------
+
+--Functional Web
+
+--Alternative for building Restful APIs using Spring Webflux
+
+--Router->Rest Endpoints are configured
+
+--Handlers->Code to handle the request is located
+
+--GlobalErrorHandler implements ErrorWebExceptionHandler in Functional Web
+
+public Mono<Void> handle(ServerWebExchange exchange, Throwable ex) {
+
+ DataBufferFactory bufferFactory = exchange.getResponse().bufferFactory();
+        var errorMessage = bufferFactory.wrap(ex.getMessage().getBytes());
+		
+		
+--WebClient ==> Reactive Non-Blocking Rest Client,to interact with other services in a non-blocking fashion
+
+--@Bean
+    public WebClient webClient(WebClient.Builder builder) {
+        return builder.build();
+    }
+
+--WebClientAutoConfiguration -- Prepares WebClient.Builder webClientBuilder
+
+--onStatus() --handling 4XX/5XX Errors
+
+----------------------------------------------------------
+
+--WireMock(To mock external API calls snd mock response/errors)
+
+--@AutoConfigureWireMock(port = 8084) // automaticaly spins up a httpserver in port 8084
+
+--@TestPropertySource(properties = {
+        "restClient.moviesInfoUrl=http://localhost:8084/v1/movieinfos",
+        "restClient.reviewsUrl=http://localhost:8084/v1/reviews",
+})
+
+--stubFor(get(urlEqualTo("/v1/movieinfos/" + movieId))
+                .willReturn(aResponse()
+                        .withHeader("Content-Type", "application/json")
+                        .withBodyFile("movieinfo.json")));
+						
+--4XX Client Error Simulation --
+
+stubFor(get(urlEqualTo("/v1/movieinfos/" + movieId))
+                .willReturn(aResponse()
+                        .withStatus(404)));
+						
+--5XX Server Error Simulation --
+
+stubFor(get(urlEqualTo("/v1/movieinfos/" + movieId))
+                .willReturn(aResponse()
+                        .withStatus(500)
+                        .withBody("MovieInfo Service Unavailable")));
+						
+						
+-----------------------------------------------------------
+
+--Retry Failed Http Calls(To handle Network Errors)
+
+--// .retry(3)
+				// .retryWhen(Retry.fixedDelay(3, Duration.ofMillis(500)))
+				
+				
+				.retryWhen(RetryUtil.retrySpec()).log();
+				
+				
+--Check for Retry in Wiremock --**WireMock.verify(4, getRequestedFor(urlEqualTo("/v1/movieinfos/" + movieId))); 
+
+
+--public static Retry retrySpec() {
+        return RetrySpec.fixedDelay(3, Duration.ofSeconds(1))
+		
+		//Allow retry only for below exceptions--
+		
+                .filter((ex) -> ex instanceof MoviesInfoServerException || ex instanceof ReviewsServerException)
+				
+		//Preserve and throw the real exception instead of retry-exhausted exception
+		
+                .onRetryExhaustedThrow(((retryBackoffSpec, retrySignal) -> Exceptions.propagate(retrySignal.failure())));
+
+    }
+						
+---------------------------------------------------------------
+
+--Server Sent Events(SSE) --Unidirectional Client to Server Connection
+
+-Once the connection establishes ,server will be sending the new data as events to client
+
+-long Live Client Connections
+
+---------------------------------------------------------------
+
+--An API should act as both publisher and subscriber at the same time to send server sent events
+
+--Sink --allows safe manual triggering of signals(Or, Reactive Stream of Events). It can either be associated to a subscription (from inside an operator) or completely standalone
+
+ Sinks.Many<Integer> replaySinks = Sinks.many().replay().all();
+        //Sinks.Many<Integer> replaySinks = Sinks.many().replay().latest();
+
+
+        var emitResult = replaySinks.tryEmitNext(1);
+        System.out.println("emitResult :  " + emitResult);
+        replaySinks.emitNext(2, Sinks.EmitFailureHandler.FAIL_FAST);
+
+        //This is just an example code and need not have to be covered.
+        /*replaySinks.emitNext(3, (signalType, emitResult1) -> {
+            System.out.println("signalType : "+ signalType);
+            System.out.println("emitResult1 : "+ emitResult1);
+            if(emitResult == Sinks.EmitResult.FAIL_CANCELLED){
+                return false;
+            }
+            return false;
+        });*/
+
+
+        Flux<Integer> integerFlux = replaySinks.asFlux();
+        integerFlux
+                .subscribe(s->{
+                    System.out.println("Subscriber 1 : " + s);
+                });
+
+        Flux<Integer> integerFlux1 = replaySinks.asFlux();
+
+        integerFlux1
+                .subscribe(s->{
+                    System.out.println("Subscriber 2 : " + s);
+                });
+
+        replaySinks.tryEmitNext(3); --**// Even if emit value is after subscribe operation but subscriber will still listen to it
+		
+		
+--multiCast() -new Subscriber only receives new emit results after subscription happened
+
+--uniCast() -allows only single subscriber
+
+---------------------------------------------------
+
+Sinks.Many<MovieInfo> movieInfoSink = Sinks.many().replay().latest();
+
+moviesInfoService.addMovieInfo(movieInfo)
+                .doOnNext(savedMovieInfo -> movieInfoSink.tryEmitNext(savedMovieInfo));
+				
+				
+--@GetMapping(value = "/movieinfos/stream", produces = MediaType.APPLICATION_NDJSON_VALUE)
+    public Flux<MovieInfo> streamMovieInfos() {
+
+--Sink in Functional Web -->
+
+	public Mono<ServerResponse> getReviewsStream(ServerRequest serverRequest) {
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_NDJSON)
+                .body(reviewsSink.asFlux(), Review.class)
+                .log();
+
+
+    }
+	
+	--Publishing
+	
+	return serverRequest.bodyToMono(Review.class)
+                .doOnNext(this::validate)
+                .flatMap(review -> reviewReactiveRepository.save(review))
+                .doOnNext(review -> {
+                    reviewsSink.tryEmitNext(review);
+                })
+                .flatMap(savedReview ->
+                        ServerResponse.status(HttpStatus.CREATED)
+                                .bodyValue(savedReview));
+						
